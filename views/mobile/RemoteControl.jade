@@ -1,0 +1,32 @@
+//
+   Created by Inoku on 2016/8/11.
+
+doctype html
+html(lang="en")
+    head
+        script(src='/socket.io/socket.io.js')
+        script(src='/javascripts/jquery-2.1.3.min.js')
+        script(src='/javascripts/frontcore.js')
+    body
+        button#sendmsg SendMSG
+        button#btnconnect Connect
+        button#btndiscon Disconnect
+        #message
+    script.
+        var socket;
+        $('#btnconnect').on('click', function () {
+            var groupid = '01';
+            socket = io('/'  + groupid);
+            socket.on('connect', function () {
+                $('#message').append($('<li>').text("connectted"));
+            });
+            socket.on('disconnect', function () {
+                $('#message').append($('<li>').text("disconnect"));
+            });
+        })
+        $('#sendmsg').on('click', function () {
+            socket.emit('chat message', 'remote send');
+        })
+        $('#btndiscon').on('click', function () {
+            socket.emit('dodisconnect', '');
+        })

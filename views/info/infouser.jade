@@ -1,0 +1,28 @@
+//
+   Created by Inoku on 2016/6/11.
+extends ../layout
+
+block styles
+    style.
+        h1 {
+            color: darkcyan;
+        }
+        #lblinfo{
+            font-size: 4em;
+        }
+        .item img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        #ctnt{
+            height: 100vh;
+        }
+
+block head
+    script(src='/javascripts/jquery-2.1.3.min.js')
+    script(src='/javascripts/datapolling.js')
+    link(rel='stylesheet', href='/lib/bootstrap/css/bootstrap.css')
+    script(src='/lib/bootstrap/js/bootstrap.js')
+
+block content
+    #ctnt

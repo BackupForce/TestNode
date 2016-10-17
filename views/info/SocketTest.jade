@@ -1,0 +1,40 @@
+//
+   Created by Inoku on 2016/7/28.
+
+doctype html
+html(lang="en")
+  head
+      script(src='/socket.io/socket.io.js')
+      script(src='/javascripts/jquery-2.1.3.min.js')
+      script(src='/javascripts/frontcore.js')
+    body
+        button#btn Send
+        input#inpval
+        button#btnset Set
+        button#btnget Get
+        #messages
+
+      script.
+          var socket = io('/' + QueryString.groupid);
+          socket.on('init', function (data) {
+              socket.emit('checkdevid', QueryString.devid);
+              //socket.emit('docmd', QueryString.devid);
+          });
+          $('#btn').on('click', function () {
+              socket.emit('chat message', '565656565656');
+          })
+          $('#btnget').on('click', function () {
+              socket.emit('getvar', '565656565656');
+          })
+          $('#btnset').on('click', function () {
+              socket.emit('setvar', $('#inpval').val());
+          })
+          socket.on('message', function (data) {
+              console.log(data.message);
+          });
+          socket.on('chat message', function (msg) {
+              $('#messages').append($('<li>').text(msg));
+          });
+          socket.on('rspvar', function (msg) {
+              $('#messages').append($('<li>').text(msg));
+          });

@@ -1,0 +1,23 @@
+//
+   Created by Inoku on 2016/7/9.
+.container-fluid
+    case mode
+        when "big"
+                -var items= ObjImage;
+                each item, i in items
+                    .row
+                        div.item(class='col-xs-8')
+                            img(src= item.Path)
+                        div.item(class='col-xs-4')
+                            .temp= item.Description
+                            .infoimg= Renen + ':' + FlagIndex + '/' + ImageQty
+        default
+            .row
+                .col-xs-12
+                    #lblinfo= Renen + ':' + FlagIndex + '/' + ImageQty
+            .row
+                -var items= ObjImage;
+                each item, i in items
+                    div.item(class='col-xs-#{ColumnCount}')
+                        img(src= item.Path)
+                        //.temp= item.Description

@@ -1,0 +1,10 @@
+//
+   Created by Inoku on 2016/8/12.
+
+.container-fluid
+    .row
+        -var items= ObjImage;
+        each item, i in items
+            div.item(class='col-xs-3')
+                img(src= item.Path)
+                //.temp= item.Description

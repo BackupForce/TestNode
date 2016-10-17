@@ -1,0 +1,23 @@
+//
+   Created by Inoku on 2016/8/12.
+
+doctype html
+html(lang="en")
+    head
+        script(src='/socket.io/socket.io.js')
+        script(src='/javascripts/jquery-2.1.3.min.js')
+        link(rel='stylesheet', href='/lib/bootstrap/css/bootstrap.css')
+        script(src='/lib/bootstrap/js/bootstrap.js')
+        script(src='/javascripts/frontcore.js')
+    body
+        #header
+        #main
+    script.
+        var socket = io('/' + QueryString.groupid);
+        socket.on('init', function (data) {
+            socket.emit('checkdevid', QueryString.devid);
+        });
+        socket.on('imgsdata', function (data) {
+            $('#header').append(data.headrender);
+            $('#main').append(data.mainrender);
+        });
